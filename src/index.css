@@ -1,46 +1,46 @@
 :root {
-	font-family: "Space Grotesk", sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
-	background: url('/background.webp');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: top center;
-	min-height: 100vh;
-	color: white;
-	font-size: 10px;
-	--primary: #659C96;
-	--secondary: #021b27;
-	--light: #A9BBBA;
-	--background-color: #021b2794;
-	--accent: #d5a900;
-	--transition: all 0.3s ease-in-out;
+  font-family: "Space Grotesk", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background: url("/background.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  min-height: 100vh;
+  color: white;
+  font-size: 10px;
+  --primary: #659c96;
+  --secondary: #021b27;
+  --light: #a9bbba;
+  --background-color: #021b2794;
+  --accent: #d5a900;
+  --transition: all 0.3s ease-in-out;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 a {
-	color: var(--light);
-	text-decoration: none;
-	transition: var(--transition);
+  color: var(--light);
+  text-decoration: none;
+  transition: var(--transition);
 }
 
 a:hover {
-	color: var(--primary);
+  color: var(--primary);
 }
 
 body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 :focus,
 :active {
-	outline: none;
+  outline: none;
 }
 
 input {
-	font-family: inherit;
+  font-family: inherit;
 }

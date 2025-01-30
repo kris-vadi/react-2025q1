@@ -1,9 +1,10 @@
 import "./App.css";
+import ErrorBlock from "./components/ErrorBlock/ErrorBlock";
 
 function App() {
   return (
     <>
-      <h1>Vite + React</h1>
+      <ErrorBlock />
     </>
   );
 }
