@@ -1,10 +1,10 @@
 import "./App.css";
-import ErrorBlock from "./components/ErrorBlock/ErrorBlock";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
     <>
-      <ErrorBlock />
+      <Header />
     </>
   );
 }
