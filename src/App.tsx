@@ -2,11 +2,26 @@ import { Component, ReactNode } from "react";
 import "./App.css";
 import Button from "./components/Button/Button";
 import Header from "./components/Header/Header";
+import ItemsList from "./components/ItemsList/ItemsList";
+import { BASE_PATH } from "./API/constants";
 
 class App extends Component {
   state = {
-    hasError: false,
     searchValue: "",
+    hasError: false,
+    items: [],
+    isLoading: false,
+  };
+
+  componentDidMount(): void {
+    this.fetchData(this.state.searchValue);
+  }
+
+  fetchData = async (searchValue: string) => {
+    this.setState({ isLoading: true });
+    const res = await fetch(`${BASE_PATH}=${searchValue}`);
+    const data = await res.json();
+    this.setState({ items: data.results, isLoading: false });
   };
 
   throwErrorBoundary = () => {
@@ -29,6 +44,10 @@ class App extends Component {
         <Header onSearch={this.handleSearch} />
         <main className="main">
           <Button onClick={this.throwErrorBoundary}>Throw Error</Button>
+          <ItemsList
+            isLoading={this.state.isLoading}
+            items={this.state.items}
+          />
         </main>
       </>
     );

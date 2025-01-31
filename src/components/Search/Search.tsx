@@ -3,7 +3,7 @@ import styles from "./Search.module.css";
 import { SearchProps, SearchState } from "./Search.props";
 import Button from "../Button/Button";
 
-export class Search extends Component<SearchProps> {
+class Search extends Component<SearchProps> {
   state: SearchState = {
     inputValue: "",
   };
