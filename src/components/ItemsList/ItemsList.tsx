@@ -1,6 +1,7 @@
 import { Component, ReactNode } from "react";
 import styles from "./ItemsList.module.css";
 import ItemListProps from "./ItemsList.props";
+import Item from "../Item/Item";
 
 class ItemsList extends Component<ItemListProps> {
   renderContent() {
@@ -12,7 +13,7 @@ class ItemsList extends Component<ItemListProps> {
       return (
         <div className={styles.list}>
           {this.props.items.map((item) => (
-            <div key={crypto.randomUUID()}>{item.name}</div>
+            <Item key={crypto.randomUUID()} item={item} />
           ))}
         </div>
       );
