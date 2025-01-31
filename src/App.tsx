@@ -6,10 +6,17 @@ import Header from "./components/Header/Header";
 class App extends Component {
   state = {
     hasError: false,
+    searchValue: "",
   };
 
   throwErrorBoundary = () => {
     this.setState({ hasError: true });
+  };
+
+  handleSearch = (newValue: string) => {
+    this.setState({
+      searchValue: newValue,
+    });
   };
 
   render(): ReactNode {
@@ -19,7 +26,7 @@ class App extends Component {
 
     return (
       <>
-        <Header />
+        <Header onSearch={this.handleSearch} />
         <main className="main">
           <Button onClick={this.throwErrorBoundary}>Throw Error</Button>
         </main>
