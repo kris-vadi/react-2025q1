@@ -1,12 +1,15 @@
+import { Component, ReactNode } from "react";
 import styles from "./Button.module.css";
 import ButtonProps from "./Button.props";
 
-const Button = ({ children, ...props }: ButtonProps): JSX.Element => {
-  return (
-    <button className={styles["button"]} {...props}>
-      {children}
-    </button>
-  );
-};
+class Button extends Component<ButtonProps> {
+  render(): ReactNode {
+    return (
+      <button className={styles["button"]} {...this.props}>
+        {this.props.children}
+      </button>
+    );
+  }
+}
 
 export default Button;
