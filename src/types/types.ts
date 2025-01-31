@@ -4,6 +4,7 @@ export type PlanetParams = {
   climate: string;
   terrain: string;
   population: string;
+  created: string;
 };
 
 export type ResponseParams = {
