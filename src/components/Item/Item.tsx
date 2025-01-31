@@ -6,7 +6,7 @@ import { listKeys } from "../../helpers/listKeys";
 class Item extends Component<ItemProps> {
   render(): ReactNode {
     return (
-      <div className={styles["item"]} key={this.props.key}>
+      <div className={styles["item"]}>
         {Object.entries(this.props.item).map(
           ([key, value]) =>
             listKeys.includes(key) && (

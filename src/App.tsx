@@ -1,19 +1,22 @@
 import { Component, ReactNode } from "react";
 import "./App.css";
-import Button from "./components/Button/Button";
 import Header from "./components/Header/Header";
 import ItemsList from "./components/ItemsList/ItemsList";
 import { BASE_PATH } from "./API/constants";
+import ErrorButton from "./components/Button/ErrorButton";
 
 class App extends Component {
   state = {
     searchValue: "",
-    hasError: false,
     items: [],
     isLoading: false,
   };
 
   componentDidMount(): void {
+    const currentValue = localStorage.getItem("search-input-value");
+    this.setState({ inputValue: currentValue || "" });
+    console.log(currentValue);
+    console.log(this.state.searchValue);
     this.fetchData(this.state.searchValue);
   }
 
@@ -24,10 +27,6 @@ class App extends Component {
     this.setState({ items: data.results, isLoading: false });
   };
 
-  throwErrorBoundary = () => {
-    this.setState({ hasError: true });
-  };
-
   handleSearch = (newValue: string) => {
     this.setState({
       searchValue: newValue,
@@ -35,15 +34,11 @@ class App extends Component {
   };
 
   render(): ReactNode {
-    if (this.state.hasError) {
-      throw new Error("ErrorBoundary worked!");
-    }
-
     return (
       <>
         <Header onSearch={this.handleSearch} />
         <main className="main">
-          <Button onClick={this.throwErrorBoundary}>Throw Error</Button>
+          <ErrorButton>Throw Error</ErrorButton>
           <ItemsList
             isLoading={this.state.isLoading}
             items={this.state.items}

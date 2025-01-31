@@ -1,6 +1,6 @@
 import { Component, ReactNode } from "react";
 import styles from "./Button.module.css";
-import ButtonProps from "./Button.props";
+import { ButtonProps } from "./Button.props";
 
 class Button extends Component<ButtonProps> {
   render(): ReactNode {

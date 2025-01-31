@@ -13,7 +13,7 @@ class ItemsList extends Component<ItemListProps> {
       return (
         <div className={styles.list}>
           {this.props.items.map((item) => (
-            <Item key={item.created} item={item} />
+            <Item item={item} key={item.created} />
           ))}
         </div>
       );
