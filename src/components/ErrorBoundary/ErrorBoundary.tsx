@@ -1,9 +1,7 @@
 import { Component, ErrorInfo } from "react";
-import {
-  ErrorBoundaryProps,
-  ErrorBoundaryState,
-} from "../../interfaces/interfaces";
+
 import ErrorBlock from "../ErrorBlock/ErrorBlock";
+import { ErrorBoundaryProps, ErrorBoundaryState } from "./ErrorBoundary.props";
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {

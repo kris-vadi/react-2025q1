@@ -23,12 +23,12 @@ export class Search extends Component<SearchProps> {
   };
 
   handleSearch = () => {
-    this.props.onSearch(this.state.inputValue.trim());
+    this.props.onSearch(this.state.inputValue);
   };
 
   handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    this.props.onSearch(this.state.inputValue.trim());
+    this.props.onSearch(this.state.inputValue);
   };
 
   componentDidMount() {
