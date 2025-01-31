@@ -1,5 +1,5 @@
 export interface SearchProps {
-  onSearch: (newValue: string) => void;
+  getSearch: (newValue: string) => void;
 }
 
 export interface SearchState {

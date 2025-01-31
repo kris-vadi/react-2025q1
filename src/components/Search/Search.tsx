@@ -22,13 +22,10 @@ class Search extends Component<SearchProps> {
     }
   };
 
-  handleSearch = () => {
-    this.props.onSearch(this.state.inputValue);
-  };
-
   handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    this.props.onSearch(this.state.inputValue);
+    this.props.getSearch(this.state.inputValue);
+    console.log(this.state.inputValue);
   };
 
   componentDidMount() {
@@ -46,7 +43,7 @@ class Search extends Component<SearchProps> {
           value={this.state.inputValue}
           onChange={this.handleInputChange}
         ></input>
-        <Button onClick={this.handleSearch}>Search</Button>
+        <Button>Search</Button>
       </form>
     );
   }

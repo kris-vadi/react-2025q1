@@ -1,5 +1,5 @@
 interface HeaderProps {
-  onSearch: (newValue: string) => void;
+  getSearch: (newValue: string) => void;
 }
 
 export default HeaderProps;

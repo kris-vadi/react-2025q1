@@ -8,7 +8,7 @@ class Header extends Component<HeaderProps> {
     return (
       <header className={styles.header}>
         <div className={styles.logo}></div>
-        <Search onSearch={this.props.onSearch} />
+        <Search getSearch={this.props.getSearch} />
       </header>
     );
   }
