@@ -14,17 +14,15 @@ class HomePage extends Component {
   };
 
   componentDidMount(): void {
-    const currentValue = localStorage.getItem("search-input-value");
-    this.setState({ inputValue: currentValue || "" });
-    this.fetchData(this.state.searchValue);
+    const currentValue = localStorage.getItem("search-input-value") || "";
+    this.setState({ searchValue: currentValue });
+    this.fetchData(currentValue);
   }
 
   fetchData = async (searchValue: string) => {
     this.setState({ isLoading: true });
     const res = await fetch(`${BASE_PATH}=${searchValue}`);
     const data = await res.json();
-    console.log(data.results);
-    console.log(searchValue);
     this.setState({ items: data.results, isLoading: false });
   };
 
