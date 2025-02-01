@@ -25,7 +25,6 @@ class Search extends Component<SearchProps> {
   handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     this.props.getSearch(this.state.inputValue);
-    console.log(this.state.inputValue);
   };
 
   componentDidMount() {

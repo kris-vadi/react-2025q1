@@ -5,3 +5,12 @@
   justify-content: center;
   align-items: center;
 }
+
+.loader {
+  background-image: url("../../assets/loader.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 35px;
+  height: 35px;
+}
