@@ -11,6 +11,7 @@ class HomePage extends Component {
     items: [],
     searchValue: "",
     isLoading: false,
+    error: "",
   };
 
   componentDidMount(): void {
@@ -21,9 +22,15 @@ class HomePage extends Component {
 
   fetchData = async (searchValue: string) => {
     this.setState({ isLoading: true });
-    const res = await fetch(`${BASE_PATH}=${searchValue}`);
-    const data = await res.json();
-    this.setState({ items: data.results, isLoading: false });
+    await fetch(`${BASE_PATH}=${searchValue}`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({ items: data.results, isLoading: false });
+        return data;
+      })
+      .catch((error) => {
+        this.setState({ error: error.message, isLoading: false });
+      });
   };
 
   getSearch = (newValue: string) => {
@@ -47,6 +54,7 @@ class HomePage extends Component {
           <ItemsList
             isLoading={this.state.isLoading}
             items={this.state.items}
+            error={this.state.error}
           />
         </main>
       </>

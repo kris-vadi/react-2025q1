@@ -19,6 +19,10 @@ class ItemsList extends Component<ItemListProps> {
       );
     }
 
+    if (this.props.error !== "") {
+      return <p>ERROR: {this.props.error}</p>;
+    }
+
     return <p>Sorry, no items match your search...</p>;
   }
 
