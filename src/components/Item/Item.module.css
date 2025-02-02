@@ -1,0 +1,25 @@
+.item {
+  color: var(--light);
+  font-size: 1.6rem;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #202527d4;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.item:hover {
+  color: var(--primary);
+}
+
+.item:hover .item-key {
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+.item-key {
+  font-size: 1.4rem;
+  margin-right: 10px;
+  transition: var(--transition);
+}

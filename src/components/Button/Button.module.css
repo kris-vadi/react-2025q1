@@ -1,0 +1,24 @@
+.button {
+  color: white;
+  font-size: 1.6rem;
+  padding: 10px 40px;
+  border-radius: 50px;
+  background-color: var(--primary);
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  font-family: "Space Grotesk", sans-serif;
+  max-width: fit-content;
+}
+
+.button:hover {
+  color: white;
+  color: var(--accent);
+}
+
+.button:disabled {
+  background-color: #a9bbba30;
+}
+.button:disabled {
+  pointer-events: none;
+}

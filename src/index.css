@@ -1,0 +1,53 @@
+:root {
+  font-family: "Space Grotesk", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background: url("/background.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  min-height: 100vh;
+  color: white;
+  font-size: 10px;
+  --primary: #659c96;
+  --secondary: #0f222b;
+  --light: #a9bbba;
+  --background-color: #0f222bcc;
+  --accent: #d5a900;
+  --transition: all 0.3s ease-in-out;
+  --shadow: 0px 2px 10px 0px #01141d;
+}
+
+#root {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--light);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+input {
+  font-family: inherit;
+}
