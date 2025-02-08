@@ -9,21 +9,10 @@ import HomePageState from "./HomePage.props";
 const HomePage = () => {
   const [appData, setAppData] = useState<HomePageState>({
     items: [],
-    searchValue: "",
+    searchValue: localStorage.getItem("search-input-value") || "",
     isLoading: false,
     error: "",
   });
-
-  useEffect(() => {
-    const currentValue = localStorage.getItem("search-input-value") || "";
-    setAppData((prevAppData) => {
-      return {
-        ...prevAppData,
-        searchValue: currentValue,
-      };
-    });
-    fetchData(currentValue);
-  }, []);
 
   useEffect(() => {
     fetchData(appData.searchValue || "");
