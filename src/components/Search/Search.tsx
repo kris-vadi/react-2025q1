@@ -1,20 +1,16 @@
-import { ChangeEvent, Component, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import styles from "./Search.module.css";
-import { SearchProps, SearchState } from "./Search.props";
+import { SearchProps } from "./Search.props";
 import Button from "../Button/Button";
 
-class Search extends Component<SearchProps> {
-  state: SearchState = {
-    inputValue: "",
-  };
+const Search = ({ getSearch }: SearchProps) => {
+  const [inputValue, setInputValue] = useState<string>("");
 
-  handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const currentValue = event.target.value.trim();
 
-    this.setState({
-      inputValue: currentValue,
-    });
+    setInputValue(currentValue);
     if (currentValue === "") {
       localStorage.removeItem("search-input-value");
     } else {
@@ -22,30 +18,28 @@ class Search extends Component<SearchProps> {
     }
   };
 
-  handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    this.props.getSearch(this.state.inputValue);
+    getSearch(inputValue);
   };
 
-  componentDidMount() {
+  useEffect(() => {
     const currentValue = localStorage.getItem("search-input-value");
-    this.setState({ inputValue: currentValue || "" });
-  }
+    setInputValue(currentValue || "");
+  }, []);
 
-  render() {
-    return (
-      <form className={styles.form} onSubmit={this.handleSubmit}>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="Search..."
-          value={this.state.inputValue}
-          onChange={this.handleInputChange}
-        ></input>
-        <Button>Search</Button>
-      </form>
-    );
-  }
-}
+  return (
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <input
+        className={styles.input}
+        type="text"
+        placeholder="Search..."
+        value={inputValue}
+        onChange={handleInputChange}
+      ></input>
+      <Button>Search</Button>
+    </form>
+  );
+};
 
 export default Search;

@@ -1,28 +1,19 @@
-import { Component } from "react";
+import { useState } from "react";
 import Button from "./Button";
-import { ButtonProps, ErrorButtonState } from "./Button.props";
+import { ButtonProps } from "./Button.props";
 
-class ErrorButton extends Component<ButtonProps, ErrorButtonState> {
-  constructor(props: ButtonProps) {
-    super(props);
-    this.state = {
-      hasError: false,
-    };
-    this.throwErrorBoundary = this.throwErrorBoundary.bind(this);
-  }
+const ErrorButton = ({ children }: ButtonProps) => {
+  const [error, setError] = useState<boolean>(false);
 
-  throwErrorBoundary = () => {
-    this.setState({ hasError: true });
+  const throwErrorBoundary = () => {
+    setError(true);
   };
 
-  render() {
-    if (this.state.hasError) {
-      throw new Error("ErrorBoundary worked!");
-    }
-    return (
-      <Button onClick={this.throwErrorBoundary}>{this.props.children}</Button>
-    );
+  if (error) {
+    throw new Error("ErrorBoundary worked!");
   }
-}
+
+  return <Button onClick={throwErrorBoundary}>{children}</Button>;
+};
 
 export default ErrorButton;

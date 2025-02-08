@@ -1,4 +1,4 @@
-import { Component, ReactNode } from "react";
+import { useEffect, useState } from "react";
 import styles from "./HomePage.module.css";
 import ErrorButton from "../../components/Button/ErrorButton";
 import Header from "../../components/Header/Header";
@@ -6,59 +6,80 @@ import ItemsList from "../../components/ItemsList/ItemsList";
 import { BASE_PATH } from "../../API/constants";
 import HomePageState from "./HomePage.props";
 
-class HomePage extends Component {
-  state = {
+const HomePage = () => {
+  const [appData, setAppData] = useState<HomePageState>({
     items: [],
     searchValue: "",
     isLoading: false,
     error: "",
-  };
+  });
 
-  componentDidMount(): void {
+  useEffect(() => {
     const currentValue = localStorage.getItem("search-input-value") || "";
-    this.setState({ searchValue: currentValue });
-    this.fetchData(currentValue);
-  }
+    setAppData((prevAppData) => {
+      return {
+        ...prevAppData,
+        searchValue: currentValue,
+      };
+    });
+    fetchData(currentValue);
+  }, []);
 
-  fetchData = async (searchValue: string) => {
-    this.setState({ isLoading: true });
+  useEffect(() => {
+    fetchData(appData.searchValue || "");
+  }, [appData.searchValue]);
+
+  const fetchData = async (searchValue: string) => {
+    setAppData((prevAppData) => {
+      return {
+        ...prevAppData,
+        isLoading: true,
+      };
+    });
     await fetch(`${BASE_PATH}=${searchValue}`)
       .then((res) => res.json())
       .then((data) => {
-        this.setState({ items: data.results, isLoading: false });
+        setAppData((prevAppData) => {
+          return {
+            ...prevAppData,
+            items: data.results,
+            isLoading: false,
+          };
+        });
         return data;
       })
       .catch((error) => {
-        this.setState({ error: error.message, isLoading: false });
+        setAppData((prevAppData) => {
+          return {
+            ...prevAppData,
+            error: error.message,
+            isLoading: false,
+          };
+        });
       });
   };
 
-  getSearch = (newValue: string) => {
-    this.setState({
-      searchValue: newValue,
+  const getSearch = (newValue: string) => {
+    setAppData((prevAppData) => {
+      return {
+        ...prevAppData,
+        searchValue: newValue,
+      };
     });
   };
 
-  componentDidUpdate(_: unknown, prevState: HomePageState): void {
-    if (this.state.searchValue !== prevState.searchValue) {
-      this.fetchData(this.state.searchValue);
-    }
-  }
-
-  render(): ReactNode {
-    return (
-      <>
-        <Header getSearch={this.getSearch} />
-        <main className={styles["main"]}>
-          <ErrorButton>Throw Error</ErrorButton>
-          <ItemsList
-            isLoading={this.state.isLoading}
-            items={this.state.items}
-            error={this.state.error}
-          />
-        </main>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Header getSearch={getSearch} />
+      <main className={styles["main"]}>
+        <ErrorButton>Throw Error</ErrorButton>
+        <ItemsList
+          isLoading={appData.isLoading}
+          items={appData.items}
+          error={appData.error}
+        />
+      </main>
+    </>
+  );
+};
 export default HomePage;
