@@ -5,6 +5,7 @@ export type PlanetParams = {
   terrain: string;
   population: string;
   created: string;
+  url: string;
 };
 
 export type ResponseParams = {

@@ -5,7 +5,7 @@ import Header from "../../components/Header/Header";
 import ItemsList from "../../components/ItemsList/ItemsList";
 import { BASE_PATH } from "../../API/constants";
 import HomePageState from "./HomePage.props";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import Pagination from "../../components/Pagination/Pagination";
 
 const HomePage = () => {
@@ -18,6 +18,7 @@ const HomePage = () => {
     error: "",
   });
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData(appData.searchValue || "", page);
@@ -34,7 +35,6 @@ const HomePage = () => {
       .then((res) => res.json())
       .then((data) => {
         setAppData((prevAppData) => {
-          console.log(data);
           return {
             ...prevAppData,
             items: data.results,
@@ -54,6 +54,7 @@ const HomePage = () => {
           };
         });
       });
+    navigate(`/page/${page}`);
   };
 
   const getSearch = (newValue: string) => {
@@ -70,22 +71,24 @@ const HomePage = () => {
     <>
       <Header getSearch={getSearch} />
       <main className={styles["main"]}>
-        <ErrorButton>Throw Error</ErrorButton>
-        <ItemsList
-          isLoading={appData.isLoading}
-          items={appData.items}
-          error={appData.error}
-        />
-        {!appData.isLoading && (
-          <Pagination
-            setPage={setPage}
-            page={page}
-            next={appData.next}
-            prev={appData.prev}
+        <div className={styles["content"]}>
+          <ErrorButton>Throw Error</ErrorButton>
+          <ItemsList
+            isLoading={appData.isLoading}
+            items={appData.items}
+            error={appData.error}
           />
-        )}
+          {!appData.isLoading && (
+            <Pagination
+              setPage={setPage}
+              page={page}
+              next={appData.next}
+              prev={appData.prev}
+            />
+          )}
+        </div>
+        <Outlet />
       </main>
-      <Outlet />
     </>
   );
 };

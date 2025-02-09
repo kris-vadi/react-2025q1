@@ -1,11 +1,12 @@
 import styles from "./ItemsList.module.css";
 import ItemListProps from "./ItemsList.props";
 import Item from "../Item/Item";
+import Loader from "../UI/Loader/Loader";
 
 const ItemsList = ({ isLoading, items, error }: ItemListProps) => {
   const renderContent = () => {
     if (isLoading) {
-      return <div className={styles.loader}></div>;
+      return <Loader />;
     }
 
     if (items && items.length > 0) {

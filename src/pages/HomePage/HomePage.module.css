@@ -1,8 +1,13 @@
 .main {
   display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
-  padding: 40px;
+  gap: 20px;
+  padding: 20px 0;
   font-size: 1.8rem;
 }

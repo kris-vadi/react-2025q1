@@ -1,10 +1,15 @@
 import styles from "./Item.module.css";
 import ItemProps from "./Item.props";
 import { listKeys } from "../../helpers/listKeys";
+import { Link } from "react-router";
+import { getPlanetId } from "../../utils/utils";
 
 const Item = ({ item }: ItemProps) => {
+  const id: string = getPlanetId(item.url);
+  const newQuery = `details/${id}`;
+
   return (
-    <div className={styles["item"]}>
+    <Link to={newQuery} className={styles["item"]}>
       {Object.entries(item).map(
         ([key, value]) =>
           listKeys.includes(key) && (
@@ -16,7 +21,7 @@ const Item = ({ item }: ItemProps) => {
             </div>
           ),
       )}
-    </div>
+    </Link>
   );
 };
 
