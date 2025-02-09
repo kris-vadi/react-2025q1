@@ -9,7 +9,7 @@ const Item = ({ item }: ItemProps) => {
   const newQuery = `details/${id}`;
 
   return (
-    <Link to={newQuery} className={styles["item"]}>
+    <Link to={newQuery} className={styles["item"]} data-testid="item">
       {Object.entries(item).map(
         ([key, value]) =>
           listKeys.includes(key) && (
