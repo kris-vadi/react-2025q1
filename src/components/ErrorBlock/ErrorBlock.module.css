@@ -6,3 +6,8 @@
   padding: 40px;
   text-align: center;
 }
+
+.link {
+  color: var(--accent);
+  font-size: 2rem;
+}

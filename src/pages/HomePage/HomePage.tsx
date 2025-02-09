@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import ItemsList from "../../components/ItemsList/ItemsList";
 import { BASE_PATH } from "../../API/constants";
 import HomePageState from "./HomePage.props";
+import { Outlet } from "react-router";
 
 const HomePage = () => {
   const [appData, setAppData] = useState<HomePageState>({
@@ -68,6 +69,7 @@ const HomePage = () => {
           error={appData.error}
         />
       </main>
+      <Outlet />
     </>
   );
 };

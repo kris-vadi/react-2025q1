@@ -10,7 +10,7 @@ const ErrorButton = ({ children }: ButtonProps) => {
   };
 
   if (error) {
-    throw new Error("ErrorBoundary worked!");
+    throw new Error("ErrorBoundary worked!!!");
   }
 
   return <Button onClick={throwErrorBoundary}>{children}</Button>;
