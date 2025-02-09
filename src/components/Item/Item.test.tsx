@@ -1,11 +1,10 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { PlanetParams } from "../../types/types";
 import Item from "./Item";
 import { MemoryRouter } from "react-router-dom";
-import App from "../../App";
 
 describe("Item component", () => {
   const key = 1;
