@@ -36,7 +36,7 @@ const ItemPage = (): JSX.Element => {
     if (isLoading) {
       return (
         <>
-          <Loader />;
+          <Loader />
         </>
       );
     }

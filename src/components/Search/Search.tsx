@@ -27,6 +27,7 @@ const Search = ({ getSearch }: SearchProps) => {
         placeholder="Search..."
         value={searchQuery}
         onChange={handleInputChange}
+        data-testid="searchInput"
       ></input>
       <Button>Search</Button>
     </form>
