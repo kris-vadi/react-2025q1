@@ -19,5 +19,10 @@ describe("Search component", () => {
     expect(localStorage.getItem("search-input-value")).toBe("searchtest");
   });
 
-  // it("component retrieves the value from the local storage upon mounting", () => {});
+  it("component retrieves the value from the local storage upon mounting", () => {
+    localStorage.setItem("search-input-value", "Tatooine");
+    render(<Search getSearch={getSearch} />);
+
+    expect(screen.getByDisplayValue("Tatooine")).toBeInTheDocument();
+  });
 });
