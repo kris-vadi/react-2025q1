@@ -63,6 +63,7 @@ const HomePage = () => {
         searchValue: newValue,
       };
     });
+    setPage(1);
   };
 
   return (
