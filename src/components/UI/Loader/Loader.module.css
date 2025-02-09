@@ -2,7 +2,7 @@
   width: 40px;
   height: 40px;
   border-radius: 60%;
-  border: var(--accent);
+  border: 6px dotted var(--accent);
   animation: rotate 0.8s infinite;
 }
 

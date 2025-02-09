@@ -1,11 +1,11 @@
 .dimming {
-	position: absolute;
-	opacity: 0.3;
-	width: 100%;
-	height: calc(100% + 90px);
-	top: -90px;
-	left: 0;
-	z-index: 1;
+  position: absolute;
+  opacity: 0.3;
+  width: 100%;
+  height: calc(100% + 90px);
+  top: -90px;
+  left: 0;
+  z-index: 1;
 }
 
 .item-page {
