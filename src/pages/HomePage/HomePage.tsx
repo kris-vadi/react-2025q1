@@ -23,43 +23,41 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData(searchQuery, page);
-  }, [searchQuery, page]);
-
-  const fetchData = async (searchQuery: string, page: number) => {
-    setAppData((prevAppData) => {
-      return {
-        ...prevAppData,
-        isLoading: true,
-      };
-    });
-    await fetch(`${BASE_PATH}?search=${searchQuery}&page=${page.toString()}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setAppData((prevAppData) => {
-          return {
-            ...prevAppData,
-            items: data.results,
-            prev: data.previous,
-            next: data.next,
-            count: data.count,
-            isLoading: false,
-          };
-        });
-        return data;
-      })
-      .catch((error) => {
-        setAppData((prevAppData) => {
-          return {
-            ...prevAppData,
-            error: error.message,
-            isLoading: false,
-          };
-        });
+    const fetchData = async (searchQuery: string, page: number) => {
+      setAppData((prevAppData) => {
+        return {
+          ...prevAppData,
+          isLoading: true,
+        };
       });
-    navigate(`/page/${page}`);
-  };
+      await fetch(`${BASE_PATH}?search=${searchQuery}&page=${page.toString()}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setAppData((prevAppData) => {
+            return {
+              ...prevAppData,
+              items: data.results,
+              prev: data.previous,
+              next: data.next,
+              count: data.count,
+              isLoading: false,
+            };
+          });
+          return data;
+        })
+        .catch((error) => {
+          setAppData((prevAppData) => {
+            return {
+              ...prevAppData,
+              error: error.message,
+              isLoading: false,
+            };
+          });
+        });
+      navigate(`/page/${page}`);
+    };
+    fetchData(searchQuery, page);
+  }, [searchQuery, page, navigate]);
 
   const getSearch = (newValue: string) => {
     storeSearchQuery(newValue);

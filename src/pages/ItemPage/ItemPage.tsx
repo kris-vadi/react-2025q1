@@ -34,16 +34,23 @@ const ItemPage = (): JSX.Element => {
 
   const renderContent = () => {
     if (isLoading) {
-      return <Loader />;
+      return (
+        <>
+          <Loader />;
+        </>
+      );
     }
 
     if (isError) {
-      return <h1>{isError}</h1>;
+      return (
+        <>
+          <h1>{isError}</h1>;
+        </>
+      );
     }
 
     return (
       <>
-        <CloseButton callback={goBack} />
         <div className={styles.list}>
           {responseData &&
             Object.entries(responseData).map(
@@ -65,7 +72,10 @@ const ItemPage = (): JSX.Element => {
   return (
     <>
       <div className={styles.dimming} onClick={goBack}></div>
-      <div className={styles["item-page"]}>{renderContent()}</div>;
+      <div className={styles["item-page"]}>
+        <CloseButton callback={goBack} />
+        {renderContent()}
+      </div>
     </>
   );
 };
