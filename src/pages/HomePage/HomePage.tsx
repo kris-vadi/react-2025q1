@@ -7,14 +7,15 @@ import { BASE_PATH } from "../../API/constants";
 import HomePageState from "./HomePage.props";
 import { Outlet, useNavigate } from "react-router";
 import Pagination from "../../components/Pagination/Pagination";
+import useSearchQuery from "../../hooks/useSearchQuery";
 
 const HomePage = () => {
+  const [searchQuery, storeSearchQuery] = useSearchQuery();
   const [appData, setAppData] = useState<HomePageState>({
     items: [],
     prev: "",
     next: "",
     count: 10,
-    searchValue: localStorage.getItem("search-input-value") || "",
     isLoading: false,
     error: "",
   });
@@ -22,17 +23,17 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData(appData.searchValue || "", page);
-  }, [appData.searchValue, page]);
+    fetchData(searchQuery, page);
+  }, [searchQuery, page]);
 
-  const fetchData = async (searchValue: string, page: number) => {
+  const fetchData = async (searchQuery: string, page: number) => {
     setAppData((prevAppData) => {
       return {
         ...prevAppData,
         isLoading: true,
       };
     });
-    await fetch(`${BASE_PATH}?search=${searchValue}&page=${page.toString()}`)
+    await fetch(`${BASE_PATH}?search=${searchQuery}&page=${page.toString()}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -61,12 +62,7 @@ const HomePage = () => {
   };
 
   const getSearch = (newValue: string) => {
-    setAppData((prevAppData) => {
-      return {
-        ...prevAppData,
-        searchValue: newValue,
-      };
-    });
+    storeSearchQuery(newValue);
     setPage(1);
   };
 
