@@ -1,8 +1,7 @@
 import "@testing-library/jest-dom";
 import { describe, expect, it, vi } from "vitest";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Pagination from "./Pagination";
-import App from "../../App";
 
 describe("Pagination component", () => {
   const setPage = vi.fn();
