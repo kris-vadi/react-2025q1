@@ -1,0 +1,9 @@
+.pages {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  font-size: 1.8rem;
+  font-weight: 300;
+}

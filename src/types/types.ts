@@ -10,4 +10,6 @@ export type PlanetParams = {
 export type ResponseParams = {
   count: number;
   results: PlanetParams[];
+  next: string | null;
+  previous: string | null;
 };

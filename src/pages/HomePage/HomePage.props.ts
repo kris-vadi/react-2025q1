@@ -5,6 +5,8 @@ interface HomePageState {
   searchValue: string | null;
   isLoading: boolean;
   error: string;
+  next: string | null;
+  prev: string | null;
 }
 
 export default HomePageState;
