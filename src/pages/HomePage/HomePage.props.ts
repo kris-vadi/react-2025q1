@@ -7,6 +7,7 @@ interface HomePageState {
   error: string;
   next: string | null;
   prev: string | null;
+  count: number;
 }
 
 export default HomePageState;

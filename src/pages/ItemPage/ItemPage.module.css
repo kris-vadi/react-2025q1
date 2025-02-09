@@ -1,7 +1,17 @@
+.dimming {
+	position: absolute;
+	opacity: 0.3;
+	width: 100%;
+	height: calc(100% + 90px);
+	top: -90px;
+	left: 0;
+	z-index: 1;
+}
+
 .item-page {
   min-width: 40%;
   background-color: var(--background-color);
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;

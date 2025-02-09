@@ -13,6 +13,7 @@ const HomePage = () => {
     items: [],
     prev: "",
     next: "",
+    count: 10,
     searchValue: localStorage.getItem("search-input-value") || "",
     isLoading: false,
     error: "",
@@ -34,12 +35,14 @@ const HomePage = () => {
     await fetch(`${BASE_PATH}?search=${searchValue}&page=${page.toString()}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setAppData((prevAppData) => {
           return {
             ...prevAppData,
             items: data.results,
             prev: data.previous,
             next: data.next,
+            count: data.count,
             isLoading: false,
           };
         });
@@ -78,7 +81,7 @@ const HomePage = () => {
             items={appData.items}
             error={appData.error}
           />
-          {!appData.isLoading && (
+          {!appData.isLoading && appData.count > 10 && (
             <Pagination
               setPage={setPage}
               page={page}

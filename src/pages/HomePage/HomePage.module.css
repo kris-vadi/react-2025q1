@@ -1,6 +1,7 @@
 .main {
   display: flex;
-  justify-content: space-between;
+  min-height: calc(100vh - 90px);
+	position: relative;
 }
 
 .content {
@@ -10,4 +11,5 @@
   gap: 20px;
   padding: 20px 0;
   font-size: 1.8rem;
+  width: 100%;
 }

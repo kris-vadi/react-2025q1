@@ -62,7 +62,12 @@ const ItemPage = (): JSX.Element => {
     );
   };
 
-  return <div className={styles["item-page"]}>{renderContent()}</div>;
+  return (
+    <>
+      <div className={styles.dimming} onClick={goBack}></div>
+      <div className={styles["item-page"]}>{renderContent()}</div>;
+    </>
+  );
 };
 
 export default ItemPage;
