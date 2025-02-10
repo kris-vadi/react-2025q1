@@ -9,9 +9,9 @@ const useSearchQuery = (initialValue = "") => {
     if (newQueryValue === "") {
       localStorage.removeItem("search-input-value");
     } else {
-      setSearchQuery(newQueryValue);
       localStorage.setItem("search-input-value", newQueryValue);
     }
+    setSearchQuery(newQueryValue);
   };
 
   return [searchQuery, storeSearchQuery] as const;

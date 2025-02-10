@@ -33,7 +33,6 @@ const HomePage = () => {
       await fetch(`${BASE_PATH}?search=${searchQuery}&page=${page.toString()}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setAppData((prevAppData) => {
             return {
               ...prevAppData,
